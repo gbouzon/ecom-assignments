@@ -17,7 +17,7 @@
         <p>info here.</p>
         <!-- DO SOME INPUT CHECKING LATERS -->
         <form method = "POST" action = "">
-            <label class = "form-label">Email: <input class = "form-control" type = "text" name = "email"></label> <br>
+            <label class = "form-label">Email: <input class = "form-control" type = "email" name = "email"></label> <br>
             <label class = "form-label">Message: <textarea class = "form-control" rows = "4" cols = "50" name = "message"></textarea></label> <br>
             <input class = "form-control" type = "submit" name = "action" value = "Send!">
         </form>

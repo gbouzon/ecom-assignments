@@ -14,12 +14,20 @@
     <body>
         <div class = "container">
             <h1>Contact Us - messages sent</h1>
-            <p>Add stuff here, don't forget to add image tags</p>
-            <?php
-                //TODO: FINISH IMPLEMENTATION
-                $this->view ('shared/navigation');
-                $this->view('Count/index');
-            ?>
+            <dl>
+                <?php
+                    foreach($data as $item) { //returns an array
+                        $obj = json_decode($item);
+                        echo "<dt>$obj->author</dt><dd>$obj->message</dd>";
+                    }
+                ?>
+            </dl>
+            
         </div>
+        <?php
+            //TODO: FINISH IMPLEMENTATION
+            $this->view ('shared/navigation');
+            $this->view('Count/index');
+        ?>
     </body>
 </html>
