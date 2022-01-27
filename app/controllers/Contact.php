@@ -4,7 +4,14 @@
         class Contact extends \app\core\Controller {
 
             public function index() {
-                //TODO: finish implementation
+                if (isset($_POST['action'])) {
+                    $dataToWrite = ['author'=>$_POST['email'], 'message'=>$_POST['message']];
+                    $stringToWrite = json_encode($dataToWrite);
+                    $fileHandle = fopen('log.txt', 'a');
+                    flock($fileHandle, LOCK_EX);
+                    fwrite($fileHandle, $stringToWrite . "\n");
+                    fclose($fileHandle);
+                }
                 $this->view('Contact/index');
             }
 
