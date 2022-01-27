@@ -22,8 +22,18 @@
             <input class = "form-control" type = "submit" name = "action" value = "Send!">
         </form>
         <?php
-            $this->view ('shared/navigation');
-            $this->view('Count/index');
+            if(!isset($_POST['action'])) {
+                $this->view ('shared/navigation');
+                $this->view('Count/index');
+            }
+            else {
+                $dataToWrite = ['author'=>$_POST['email'], 'message'=>$_POST['message']];
+                $stringToWrite = json_encode($dataToWrite);
+                $fileHandle = fopen('log.txt', 'a');
+                flock($fileHandle, LOCK_EX);
+                fwrite($fileHandle, $stringToWrite . "\n");
+                fclose($fileHandle);
+            }
         ?>
     </body>
 </html>

@@ -16,9 +16,11 @@
             <h1>Contact Us - messages sent</h1>
             <dl>
                 <?php
-                    foreach($data as $item) { //returns an array
-                        $obj = json_decode($item);
-                        echo "<dt>$obj->author</dt><dd>$obj->message</dd>";
+                    if (1 < filesize('log.txt')) {
+                        foreach($data as $item) { //returns an array
+                            $obj = json_decode($item);
+                            echo "<dt>$obj->author</dt><dd>$obj->message</dd>";
+                        }
                     }
                 ?>
             </dl>

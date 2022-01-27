@@ -1,2 +1,2 @@
-{"author":"amy@email.com", "message":"Hi"}
-{"author":"bob@email.com", "message":"I hate this so much"}
+
+{"author":"tonynadeau03@gmail.com","message":"ghfdjdjhhgj"}
