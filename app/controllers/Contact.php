@@ -15,8 +15,13 @@
                 $this->view('Contact/index');
             }
 
-            public function read() { //works 
-                $messages = file('log.txt');
-                $this->view('Contact/read', $messages);
+            public function read() { //works
+                if (file_exists('log.txt')) { 
+                    $messages = file('log.txt');
+                    $this->view('Contact/read', $messages);
+                }
+                else {
+                    $this->view('Contact/read');
+                }
             }
         }

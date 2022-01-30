@@ -1,0 +1,39 @@
+img#tony {
+ 	width: 400px;
+ 	height: auto;
+}
+
+img#giu {
+	width: 400px;
+ 	height: auto;
+}
+
+section {
+	display: block;
+	float: left;
+	margin-top: 20px;
+}
+
+.container {
+	display: block;
+	float: left;
+}
+
+aside {
+	border: thin solid;
+	display: block;
+	margin: 20px 10px 0 0;
+	padding: 8px;
+	float: left;
+}
+
+input {
+	width: 80px;
+}
+
+dl {
+	width: 50%;
+}
+
+
+

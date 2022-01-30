@@ -1,4 +1,6 @@
-{"author":"gs@jfkdjf","message":"test"}
-{"author":"bob@email.com","message":"bob is a dumbass please fire him thanks"}
-{"author":"bob@email.com","message":"bob is a dumbass please fire him thanks"}
-{"author":"amy@email.com","message":"I agree bob is an idiot get rid of him already geez"}
+{"author":"tonynadeau03@gmail.com","message":"sfafdsdfadfg"}
+{"author":"","message":""}
+{"author":"thegoldenrailway@gmail.com","message":"fghjdfjdghjhg"}
+{"author":"thegoldenrailway@gmail.com","message":"kjghkdgkfh"}
+{"author":"tonynadeau03@gmail.com","message":"jghkghjl"}
+{"author":"test@poggers.com","message":"gkljghklhjk"}

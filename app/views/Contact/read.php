@@ -1,6 +1,8 @@
 <html>
     <head>
         <!-- CSS only -->
+        <link rel="stylesheet" type="text/css" href="/layout.css">
+
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel = "stylesheet" 
         integrity = "sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin = "anonymous">
     
@@ -12,24 +14,24 @@
         <title>Messages sent</title>
     </head>
     <body>
-        <div class = "container">
-            <h1>Contact Us - messages sent</h1>
-            <dl>
-                <?php
-                    if (1 < filesize('log.txt')) {
+        <?php
+            $this->view ('shared/navigation');
+        ?>
+        <section>
+            <div class = "container">
+                <h1>Contact Us - messages sent</h1>
+                <dl>
+                    <?php
                         foreach($data as $item) { //returns an array
                             $obj = json_decode($item);
                             echo "<dt>$obj->author</dt><dd>$obj->message</dd>";
                         }
-                    }
+                    ?>
+                </dl>
+                <?php
+                    $this->view('Count/index');
                 ?>
-            </dl>
-            
-        </div>
-        <?php
-            //TODO: FINISH IMPLEMENTATION
-            $this->view ('shared/navigation');
-            $this->view('Count/index');
-        ?>
+            </div>
+        </section>
     </body>
 </html>
