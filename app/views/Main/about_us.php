@@ -1,7 +1,7 @@
 <html>
     <head>
         <!-- CSS only -->
-        <link rel="stylesheet" type="text/css" href="/layout.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/layout.css">
         
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel = "stylesheet" 
         integrity = "sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin = "anonymous">
@@ -22,9 +22,9 @@
                 <p>See our developers!</p>
                 <div class="images">
                     <p>This is Tony. He plays an unhealthy amount of Smash Bros and will tell you all about the science of bowling.</p>
-                    <img src="/tonypog.png" id="tony" alt = "image does not show"><br><br>
+                    <img src="/public/img/tonypog.png" id="tony" alt = "image does not show"><br><br>
                     <p>This is Giuliana. She's kinda wack so be careful.</p>
-                    <img src="/dragonslippers.png" id="giu" alt = "image does not show"><br><br>
+                    <img src="/public/img/dragonslippers.png" id="giu" alt = "image does not show"><br><br>
                 </div>
                 <?php
                     $this->view('Count/index');

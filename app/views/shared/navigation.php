@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/layout.css">
+<link rel="stylesheet" type="text/css" href="/public/css/layout.css">
 
 <aside>
     <ul>
