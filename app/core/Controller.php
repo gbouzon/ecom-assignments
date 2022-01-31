@@ -1,6 +1,5 @@
 <?php
     namespace app\core;
-        //TODO: FIX VIEWS THEY'RE UGLY AF
         class Controller {
 
             public function view($name, $data = []) { 

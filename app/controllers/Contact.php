@@ -20,8 +20,7 @@
                     $messages = file('log.txt');
                     $this->view('Contact/read', $messages);
                 }
-                else {
+                else 
                     $this->view('Contact/read');
-                }
             }
         }

@@ -22,9 +22,9 @@
                 <p>See our developers!</p>
                 <div class="images">
                     <p>This is Tony. He plays an unhealthy amount of Smash Bros and will tell you all about the science of bowling.</p>
-                    <img src="/tonypog.png" id="tony"><br><br>
+                    <img src="/tonypog.png" id="tony" alt = "image does not show"><br><br>
                     <p>This is Giuliana. She's kinda wack so be careful.</p>
-                    <img src="/dragonslippers.png" id="giu"><br><br>
+                    <img src="/dragonslippers.png" id="giu" alt = "image does not show"><br><br>
                 </div>
                 <?php
                     $this->view('Count/index');
