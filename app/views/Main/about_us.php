@@ -21,10 +21,18 @@
                 <h1>Among U- I mean About Us</h1>
                 <p>See our developers!</p>
                 <div class="images">
-                    <p>This is Tony. He plays an unhealthy amount of Smash Bros and will tell you all about the science of bowling.</p>
-                    <img src="/public/img/tonypog.png" id="tony" alt = "image does not show"><br><br>
-                    <p>This is Giuliana. She's kinda wack so be careful.</p>
-                    <img src="/public/img/dragonslippers.png" id="giu" alt = "image does not show"><br><br>
+                    <figure>
+                        <img src="/public/img/tonypog.png" id="tony" alt = "image does not show"><br>
+                        <figcaption>
+                            ^This is Tony. He plays an unhealthy amount of Smash Bros and will tell you all about the science of bowling.^
+                        </figcaption>
+                    </figure>
+                    <figure>
+                        <img src="/public/img/dragonslippers.png" id="giu" alt = "image does not show"><br>
+                        <figcaption>
+                            ^This is Giuliana. She's great at programming, and won't hesitate to tell you your code sucks.^
+                        </figcaption>
+                    </figure>
                 </div>
                 <?php
                     $this->view('Count/index');

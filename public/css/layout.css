@@ -1,16 +1,9 @@
-img#tony {
- 	width: 400px;
- 	height: auto;
-}
-
-img#giu {
+img {
 	width: 400px;
  	height: auto;
 }
 
 section {
-	display: block;
-	float: left;
 	margin-top: 20px;
 }
 
@@ -34,6 +27,3 @@ input {
 dl {
 	width: 50%;
 }
-
-
-
