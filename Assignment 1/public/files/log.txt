@@ -1,0 +1,2 @@
+{"author":"test@eCom.ca","message":"Testing the file input"}
+{"author":"tonynadeau03@gmail.com","message":"multiple emails to show full functionality"}
