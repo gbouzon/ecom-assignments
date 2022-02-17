@@ -3,11 +3,7 @@
 
         class Main extends \app\core\Controller {
 
-            public function index() {
+            public function index() { //displays publications sorted by date
                 $this->view('Main/index');
-            }
-
-            public function about_us() {
-                $this->view('Main/about_us');
             }
         }

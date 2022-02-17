@@ -1,7 +1,7 @@
 <?php
     namespace app\controllers;
 
-        class User extends \app\Person {
+        class Person extends \app\core\Controller {
 
             
 

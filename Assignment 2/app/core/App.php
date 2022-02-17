@@ -1,46 +1,55 @@
 <?php
-    namespace app\core;
+	namespace app\core;
+	
+		class App {
+			private $controller = 'Main';
+			private $method = 'index';
 
-        class App {
+			public function __construct() {
+				$url = self::parseUrl();
 
-            //definition of private variables
-            private $controller = 'Main'; 
-            private $method = 'index';
+				if (isset($url[0])) {
+					if (file_exists('app/controllers/' . $url[0] . '.php')) 
+						$this->controller = $url[0];
+					
+					unset($url[0]);
+				}
 
-            //definition of a constructor
-            public function __construct() {
-                $url = self::parseUrl();
+				$this->controller = 'app\\controllers\\' . $this->controller;
+				$this->controller = new $this->controller;
 
-                if (isset($url[0])) {
-                    if (file_exists('app/controllers/' . $url[0] . '.php')) {
-                        $this->controller = $url[0];
-                    }
-                    //consumes url
-                    unset($url[0]); 
-                }
+				if (isset($url[1])) {
+					if (method_exists($this->controller, $url[1]))
+						$this->method = $url[1];
+					
+					unset($url[1]);
+				}
 
-                $this->controller = 'app\\controllers\\' . $this->controller;
-                $this->controller = new $this->controller; 
+				//access filtering
+				$reflection = new \ReflectionObject($this->controller);
+				$classAttributes = $reflection->getAttributes();
+				$methodAttributes = $reflection->getMethod($this->method)->getAttributes();
 
-                if (isset($url[1])) {
-                    if (method_exists($this->controller, $url[1])) 
-                        $this->method = $url[1];
+				$attributes = array_values(array_merge($classAttributes, $methodAttributes));
 
-                    unset($url[1]);
-                }
+				foreach($attributes as $attribute) {
+					$filter = $attribute->newInstance();
+					$filter->execute();
+					if ($filter->execute())
+						return;
+				}
 
-                $this->params = $url ? array_values($url) : []; // if url isn't null we're calling array_values method, otherwise params are empty
-                call_user_func_array([$this->controller, $this->method], $this->params);
-            }
+				$this->params = $url ? array_values($url) : [];
+				call_user_func_array([$this->controller, $this->method], $this->params);
+			}
 
-            private static function parseUrl() { //fix this later, maybe
-                if (isset($_GET['url'])) {
-                    return explode(
-                        '/', 
-                        filter_var(
-                            rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL
-                        )
-                    );
-                }
-            }
-        }
+			private static function parseUrl() {
+				if (isset($_GET['url'])) {
+					return explode('/',
+						filter_var(
+							rtrim($_GET['url'], '/'),
+							FILTER_SANITIZE_URL)
+					);
+				}
+			}
+		}
