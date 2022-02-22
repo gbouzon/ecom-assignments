@@ -9,6 +9,6 @@
             }
 
             public function login() {
-                $this->view('User/login');
+                $this->view('User/login'); //pass on all publications (public and private, check Main)
             }
         }

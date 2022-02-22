@@ -18,7 +18,7 @@
 		</form>
 		Already have an account? <a href="/User/login">Login here.</a>
 			<?php
-				$this->view('shared/navigation');
+				$this->view('subviews/navigation');
 			?>
 		</div>
 	</body>
