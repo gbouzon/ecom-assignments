@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2022 at 03:40 AM
+-- Generation Time: Feb 22, 2022 at 03:49 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -35,6 +35,13 @@ CREATE TABLE `profile` (
   `last_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `profile`
+--
+
+INSERT INTO `profile` (`profile_id`, `user_id`, `first_name`, `middle_name`, `last_name`) VALUES
+(1, 1, 'Tarzan', NULL, 'Nulls');
+
 -- --------------------------------------------------------
 
 --
@@ -44,11 +51,20 @@ CREATE TABLE `profile` (
 CREATE TABLE `publication` (
   `publication_id` int(11) NOT NULL,
   `profile_id` int(11) NOT NULL,
-  `publication _title` varchar(100) NOT NULL,
+  `publication_title` varchar(100) NOT NULL,
   `publication_text` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `publication_status` binary(1) NOT NULL
+  `publication_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 is public, 1 is private'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `publication`
+--
+
+INSERT INTO `publication` (`publication_id`, `profile_id`, `publication_title`, `publication_text`, `timestamp`, `publication_status`) VALUES
+(2, 1, 'The Title', 'adding some text\r\nmore random text\r\ntest\r\nfndsklglkdsrfjhilwrgijwaraklnhnkl', '2022-02-21 21:36:05', 0),
+(3, 1, 'Another publication (0)', 'some text\r\nsdjgkdsjgoidfjgdjgdfjlkgjdlfgjldgjldfjg', '2022-02-21 21:36:05', 0),
+(4, 1, 'Private Publication', 'sdfngjfdsngkjdfngkejkrgherghjwqedrftghyjmnbvgfcdesfrghbvn vgredstfghnbgtfrdfghnbhgtfrdghn mbvhcgthntrghnm htgrhntrhntr', '2022-02-21 21:36:54', 1);
 
 -- --------------------------------------------------------
 
@@ -64,6 +80,13 @@ CREATE TABLE `publication_comment` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `publication_comment`
+--
+
+INSERT INTO `publication_comment` (`publication_comment_id`, `profile_id`, `publication _id`, `comment`, `timestamp`) VALUES
+(1, 1, 2, 'your publication is total shit', '2022-02-21 21:43:31');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +98,13 @@ CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(63) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `password_hash`) VALUES
+(1, 'tarzan', '$2y$10$ZojIgKDcRX6wfj2uDcGPlO2NljkofYD7qqRswyEmXI8Jj6gv6mZdO');
 
 --
 -- Indexes for dumped tables
@@ -118,25 +148,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
