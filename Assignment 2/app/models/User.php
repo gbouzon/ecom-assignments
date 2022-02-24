@@ -7,10 +7,20 @@
                 parent::__construct();
             }
 
+            
             function get($username) {
                 $SQL = 'SELECT * FROM user WHERE username = :username';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['username'=>$username]);
+                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
+                return $STMT->fetch();
+            }
+            
+
+            function getById($user_id) { //get by user_id
+                $SQL = 'SELECT * FROM user WHERE user_id = :user_id';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['user_id'=>$user_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
                 return $STMT->fetch();
             }
@@ -19,8 +29,7 @@
                 $SQL = 'SELECT * FROM profile WHERE user_id = :user_id';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['user_id'=>$user_id]);
-                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
-                echo $STMT->fetch();
+                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Profile");
                 return $STMT->fetch();
             }
 

@@ -56,23 +56,25 @@
                 return $STMT->fetch(); //fetch is what we use to return one record that match the statement
             }
 
-            /* FINISH IMPLEMENTATION
             Function insert() { //fix this and subsequent calls
-                $SQL = 'INSERT INTO publication(first_name, middle_name, last_name, user_id) VALUES(:first_name, :middle_name, :last_name, :user_id)';
+                $SQL = 'INSERT INTO publication(profile_id, publication_title, publication_text, publication_status) 
+                VALUES(:profile_id, :publication_title, :publication_text, :publication_status)';
                 $STMT = self::$_connection->prepare($SQL);
-                $STMT->execute(['first_name'=>$this->first_name, 'middle_name'=>$this->middle_name, 'last_name'=>$this->last_name, 'user_id'=>$user_id]);
+                $STMT->execute(['profile_id'=>$this->profile_id, 'publication_title'=>$this->publication_title, 
+                'publication_text'=>$this->publication_text, 'publication_status'=>$this->publication_status]);
             }
     
             function update() {
-                $SQL = 'UPDATE profile SET first_name = :first_name, middle_name = :middle_name, last_name = :last_name WHERE profile_id = :profile_id';
+                $SQL = 'UPDATE publication SET publication_title = :publication_title, publication_text = :publication_text, 
+                publication_status = :publication_status WHERE profile_id = :profile_id';
                 $STMT = self::$_connection->prepare($SQL);
-                $STMT->execute(['first_name'=>$this->first_name, 'middle_name'=>$this->middle_name, 'last_name'=>$this->last_name, 'profile_id'=>$this->profile_id]);
+                $STMT->execute(['publication_title'=>$this->publication_title, 'publication_text'=>$this->publication_text, 
+                'publication_status'=>$this->publication_status, 'profile_id'=>$this->profile_id]);
             }
     
-            function delete($profile_id) {
-                $SQL = 'DELETE FROM profile WHERE profile_id = :profile_id';
+            function delete($publication_id) {
+                $SQL = 'DELETE FROM publication WHERE publication_id = :publication_id';
                 $STMT = self::$_connection->prepare($SQL);
-                $STMT->execute(['profile_id'=>$profile_id]);
+                $STMT->execute(['publication_id'=>$publication_id]);
             }
-            */
         }

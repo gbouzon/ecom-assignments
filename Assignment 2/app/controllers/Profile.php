@@ -17,6 +17,7 @@
                     $userProfile->middle_name=$_POST['middle_name'];
                     $userProfile->last_name=$_POST['last_name'];
                     $userProfile->insert(); //FIX INSERT PLS
+                    //$_SESSION['profile_id'] = $userProfile->profile_id;
                     echo "Profile Created";
                 }
             }

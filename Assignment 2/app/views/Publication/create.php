@@ -13,6 +13,10 @@
             <form method='post' action=''>
                 <label class='form-label'>Publication title:<input type='text' name='publication_title' class='form-control' /></label><br>
                 <label class='form-label'>Publication text:<textarea name='publication_text' class='form-control'></textarea></label><br>
+                <input type="radio" id="public" name="publication_status" value="0">
+                <label for="public">Public</label><br>
+                <input type="radio" id="private" name="publication_status" value="1">
+                <label for="private">Private</label><br>
                 <input type="submit" name='action' value='Create Publication' class='form-control' />
             </form>
             <?php
