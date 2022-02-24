@@ -1,14 +1,58 @@
 <?php
     namespace app\controllers;
-
-        #[\app\filters\Login]    
+   
         class User extends \app\core\Controller {
 
-            public function register() {
-                $this->view('User/register');
+            //pass on all publications (public and private, check Main)
+            function login() { //login here
+                if (!isset($_POST['action'])) //there is no form being submitted
+                    $this->view('User/login');
+                else {//there is a form submitted
+                    $user = new \app\models\User();
+                    $user = $user->get($_POST['username']);
+                    if ($user) 
+                        if(password_verify($_POST['password'], $user->password_hash)) {
+                            //yay! login - store that state in a session
+                            $_SESSION['username'] = $user->username;
+                            $_SESSION['user_id'] = $user->user_id;
+        
+                            header('location:/Main/index');
+                        } 
+                        else
+                            $this->view('User/login','Incorrect username/password combination.');
+                    else
+                        $this->view('User/login','Incorrect username/password combination.');
+                }
             }
-
-            public function login() {
-                $this->view('User/login'); //pass on all publications (public and private, check Main)
+        
+            function register() { //register here
+                if (!isset($_POST['action'])) //there is no form being submitted
+                    $this->view('User/register');
+                else { //there is a form submitted
+                    $newUser = new \app\models\User();
+                    $newUser->username = $_POST['username'];
+        
+                    if (!$newUser->exists() && $_POST['password'] == $_POST['password_confirm']) {
+                         $newUser->password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        
+                        $newUser->insert();
+                        header('location:/Main/index');
+                    }
+                    else 
+                        $this->view('User/register','The user account with that username already exists.');
+                }
             }
+        
+            #[\app\filters\Login]
+            function logout() {
+                session_destroy();//deletes the session ID and all data
+                header('location:/User/login');
+            }
+        
+            /*
+            #[\app\filters\Login]
+            function secureplace() {
+                echo 'You are logged in!<a href="/User/logout">Logout</a>';
+            }
+            */
         }

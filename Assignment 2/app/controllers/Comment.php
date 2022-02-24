@@ -1,6 +1,8 @@
 <?php
     namespace app\controllers;
 
+        #[\app\filters\Login] 
+        #[\app\filters\Profile]
         class Comment extends \app\core\Controller {
 
             //shows comment view -> username, comment, options to modify/delete and button to create a new comment

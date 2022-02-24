@@ -8,9 +8,6 @@
 	</head>
 	<body>
 		<div class='container'>
-			<?php
-				$this->view('shared/clock');
-			?>
 
 		<h1>Log into your user account</h1>
 		<form method='post' action=''>
@@ -20,7 +17,7 @@
 		</form>
 		No account? <a href="/User/register">Register here.</a>
 			<?php
-				$this->view('shared/navigation');
+				$this->view('subviews/navigation');
 			?>
 		</div>
 	</body>

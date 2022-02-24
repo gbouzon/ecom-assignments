@@ -14,6 +14,7 @@
                     $profile = $data->getProfile($data->profile_id);
                     $user = $data->getUser($profile->user_id);
                     $username = $user->username;
+                    //$username = $_SESSION['username']; //only works if you're logged in
 
                     echo "<h1>$data->publication_title by $username</h1>"; //title
                     echo "<p>$data->publication_text</p>"; //text

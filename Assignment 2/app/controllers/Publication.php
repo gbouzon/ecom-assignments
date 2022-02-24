@@ -12,14 +12,17 @@
                 $this->view('Publication/index', $publication);
             }
 
+            #[\app\filters\Profile]
             public function create() {
                 $this->view('Publication/create');
             }
 
+            #[\app\filters\Profile]
             public function update() {
                 $this->view('Publication/update');
             }
 
+            #[\app\filters\Profile]
             public function delete() {
             }
         }
