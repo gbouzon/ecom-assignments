@@ -10,7 +10,7 @@
         <div class='container'>
 
             <?php
-                //$this->view("Profile/details_subview/$data->profile_id");
+                $this->view("Profile/details_subview", $data);
                 $this->view('subviews/navigation');
             ?>
             <br>

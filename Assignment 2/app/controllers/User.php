@@ -15,7 +15,10 @@
                             //yay! login - store that state in a session
                             $_SESSION['username'] = $user->username;
                             $_SESSION['user_id'] = $user->user_id;
-        
+                            if ($user->getUserProfile($user->user_id)) {
+                                $profile = $user->getUserProfile($user->user_id);
+                                $_SESSION['profile_id'] = $profile->getID($user->user_id);      
+                            }
                             header('location:/Main/index');
                         } 
                         else

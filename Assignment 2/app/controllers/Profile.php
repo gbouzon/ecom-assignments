@@ -3,10 +3,10 @@
 
         class Profile extends \app\core\Controller {
 
-            public function index() { //shows profile page -> basic info, publication and comments subviews and modify button
+            public function index($profile_id) { //shows profile page -> basic info, publication and comments subviews and modify button
                 $profile = new \app\models\Profile();
-                $currentProfile = $profile->get($_SESSION['profile_id']);
-                //$this->view('Profile/index');//, $currentProfile);
+                $currentProfile = $profile->get($profile_id);
+                $this->view('Profile/index', $currentProfile);
             }
 
             public function create() {
@@ -20,7 +20,7 @@
                     $userProfile->last_name=$_POST['last_name'];
                     $userProfile->insert($_SESSION['user_id']);
                     $_SESSION['profile_id'] = $userProfile->getID($_SESSION['user_id']);
-                    header('location:/Profile/index');
+                    header('location:/Main/index');
                 }
             }
 
