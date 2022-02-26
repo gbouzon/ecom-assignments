@@ -10,13 +10,13 @@
         <div class='container'>
 
             <?php
-                $this->view('Profile/details_subview',$data);
+                //$this->view("Profile/details_subview/$data->profile_id");
                 $this->view('subviews/navigation');
             ?>
             <br>
             <?php
-                $this->view('Main/index');
-                $this->view('Comment/index');
+                //$this->view('Publication/index');
+                //$this->view('Comment/index');
             ?>
         </div>
     </body>

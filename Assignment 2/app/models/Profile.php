@@ -10,7 +10,7 @@
         function get($profile_id) {
             $SQL = 'SELECT * FROM profile WHERE profile_id = :profile_id';
             $STMT = self::$_connection->prepare($SQL);
-            $STMT->execute(['profile_id'=>$profile_id]);
+            $STMT->execute(['profile_id'=> $profile_id]);
             $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Profile");
             return $STMT->fetch();
         }
@@ -24,9 +24,9 @@
         }
 
         function insert($user_id) { //fix this and subsequent calls
-            $SQL = 'INSERT INTO profile(first_name, middle_name, last_name, user_id) VALUES(:first_name, :middle_name, :last_name, :user_id)';
+            $SQL = 'INSERT INTO profile(user_id, first_name, middle_name, last_name) VALUES(:user_id, :first_name, :middle_name, :last_name)';
             $STMT = self::$_connection->prepare($SQL);
-            $STMT->execute(['first_name'=>$this->first_name, 'middle_name'=>$this->middle_name, 'last_name'=>$this->last_name, 'user_id'=>$user_id]);
+            $STMT->execute(['user_id'=>$user_id, 'first_name'=>$this->first_name, 'middle_name'=>$this->middle_name, 'last_name'=>$this->last_name]);
         }
 
         function update() {
@@ -39,5 +39,13 @@
             $SQL = 'DELETE FROM profile WHERE profile_id = :profile_id';
             $STMT = self::$_connection->prepare($SQL);
             $STMT->execute(['profile_id'=>$profile_id]);
+        }
+
+        function getID($user_id) {
+            $SQL = 'SELECT profile_id FROM profile WHERE user_id = :user_id';
+            $STMT = self::$_connection->prepare($SQL);
+            $STMT->execute(['user_id'=>$user_id]);
+            $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Profile");
+            return $STMT->fetch();
         }
     }

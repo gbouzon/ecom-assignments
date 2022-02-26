@@ -3,8 +3,10 @@
 
         class Profile extends \app\core\Controller {
 
-            public function index($profile_id) { //shows profile page -> basic info, publication and comments subviews and modify button
-                $this->view('Profile/index', $profile_id);
+            public function index() { //shows profile page -> basic info, publication and comments subviews and modify button
+                $profile = new \app\models\Profile();
+                $currentProfile = $profile->get($_SESSION['profile_id']);
+                //$this->view('Profile/index');//, $currentProfile);
             }
 
             public function create() {
@@ -16,9 +18,9 @@
                     $userProfile->first_name=$_POST['first_name'];
                     $userProfile->middle_name=$_POST['middle_name'];
                     $userProfile->last_name=$_POST['last_name'];
-                    $userProfile->insert(); //FIX INSERT PLS
-                    //$_SESSION['profile_id'] = $userProfile->profile_id;
-                    echo "Profile Created";
+                    $userProfile->insert($_SESSION['user_id']);
+                    $_SESSION['profile_id'] = $userProfile->getID($_SESSION['user_id']);
+                    header('location:/Profile/index');
                 }
             }
 
