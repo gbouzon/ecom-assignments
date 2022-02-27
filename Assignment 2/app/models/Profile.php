@@ -35,7 +35,7 @@
             $STMT->execute(['first_name'=>$this->first_name, 'middle_name'=>$this->middle_name, 'last_name'=>$this->last_name, 'profile_id'=>$this->profile_id]);
         }
 
-        function delete($profile_id) {
+        function delete($profile_id) { //change this cause we're only supposed to be able to delete an account not the profikle
             $SQL = 'DELETE FROM profile WHERE profile_id = :profile_id';
             $STMT = self::$_connection->prepare($SQL);
             $STMT->execute(['profile_id'=>$profile_id]);
@@ -45,7 +45,6 @@
             $SQL = 'SELECT profile_id FROM profile WHERE user_id = :user_id';
             $STMT = self::$_connection->prepare($SQL);
             $STMT->execute(['user_id'=>$user_id]);
-            $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Profile");
-            return $STMT->fetch();
+            return $STMT->fetch()['profile_id'];
         }
     }

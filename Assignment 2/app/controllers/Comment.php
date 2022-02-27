@@ -1,7 +1,6 @@
 <?php
     namespace app\controllers;
 
-        #[\app\filters\Login] 
         #[\app\filters\Profile]
         class Comment extends \app\core\Controller {
 

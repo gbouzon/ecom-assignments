@@ -12,10 +12,10 @@
             <h1>Update your Profile</h1>
             <p>Change any field to edit your Profile</p>
             <form method='post' action=''>
-                <label class='form-label'>First name:<input type='text' name='first_name' class='form-control' /></label><br>
-                <label class='form-label'>Middle name:<input type='text' name='middle_name' class='form-control' /></label><br>
-                <label class='form-label'>Last name:<input type='text' name='last_name' class='form-control' /></label><br>
-                <input type="submit" name='action' value='Create Profile' class='form-control' />
+                <label class='form-label'>First name:<input type='text' name='first_name' class='form-control' value='<?= $data->first_name?>' /></label><br>
+                <label class='form-label'>Middle name:<input type='text' name='middle_name' class='form-control' value='<?= $data->middle_name?>' /></label><br>
+                <label class='form-label'>Last name:<input type='text' name='last_name' class='form-control' value='<?= $data->last_name?>' /></label><br>
+                <input type="submit" name='action' value='Update Profile' class='form-control' />
             </form>
             <?php
                 $this->view('subviews/navigation');

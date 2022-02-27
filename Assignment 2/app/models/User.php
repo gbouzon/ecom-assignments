@@ -15,7 +15,6 @@
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
                 return $STMT->fetch();
             }
-            
 
             function getById($user_id) { //get by user_id
                 $SQL = 'SELECT * FROM user WHERE user_id = :user_id';

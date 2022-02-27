@@ -1,6 +1,7 @@
 <?php
     namespace app\controllers;
 
+        #[\app\filters\Login]
         class Profile extends \app\core\Controller {
 
             public function index($profile_id) { //shows profile page -> basic info, publication and comments subviews and modify button
@@ -32,12 +33,11 @@
                     $this->view('Profile/update', $profile);
                 }
                 else {
-                    $userProfile = new \app\models\Profile();
-                    $userProfile->first_name = $_POST['first_name'];
-                    $userProfile->middle_name = $_POST['middle_name'];
-                    $userProfile->last_name = $_POST['last_name'];
+                    $profile->first_name = $_POST['first_name'];
+                    $profile->middle_name = $_POST['middle_name'];
+                    $profile->last_name = $_POST['last_name'];
                     $profile->update();
-                    header('location:/Profile/index');
+                    header("location:/Profile/index/$profile->profile_id");
                 }
             }
         }

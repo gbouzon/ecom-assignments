@@ -14,10 +14,13 @@
                     $profile = $data->getProfile($data->profile_id);
                     $user = $data->getUser($profile->user_id);
                     $username = $user->username;
-                    //$username = $_SESSION['username']; //only works if you're logged in
+                    $timestamp = $data->getTimestamp($data->publication_id);
 
-                    echo "<h1>$data->publication_title by $username</h1>"; //title
+                    echo "<h1>$data->publication_title by $username at $timestamp</h1>"; //title
                     echo "<p>$data->publication_text</p>"; //text
+                    if (isset($_SESSION['user_id']) && $user->user_id == $_SESSION['user_id'])
+                        echo "<a href='/Publication/update/$data->publication_id'>Modify this publication</a> | 
+					    <a href='/Publication/delete/$data->publication_id'>Delete this publication</a> <br> <br>";
                 ?>
             
             <?php

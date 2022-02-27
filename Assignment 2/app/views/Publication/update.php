@@ -12,8 +12,8 @@
 	<h1>Publication update</h1>
 	<p>Please enter the details of the publication you want to update</p>
 	<form method='post' action=''>
-                <label class='form-label'>Publication title:<input type='text' name='publication_title' class='form-control' /></label><br>
-                <label class='form-label'>Publication text:<textarea name='publication_text' class='form-control'></textarea></label><br>
+                <label class='form-label'>Publication title:<input type='text' name='publication_title' class='form-control' value='<?= $data->publication_title?>' /></label><br>
+                <label class='form-label'>Publication text:<textarea name='publication_text' class='form-control'><?= $data->publication_text?></textarea></label><br>
                 <input type="radio" id="public" name="publication_status" value="0">
                 <label for="public">Public</label><br>
                 <input type="radio" id="private" name="publication_status" value="1">

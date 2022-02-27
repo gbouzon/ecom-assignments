@@ -51,11 +51,8 @@
                 session_destroy();//deletes the session ID and all data
                 header('location:/User/login');
             }
-        
-            /*
-            #[\app\filters\Login]
-            function secureplace() {
-                echo 'You are logged in!<a href="/User/logout">Logout</a>';
+
+            function delete() {
+                
             }
-            */
         }

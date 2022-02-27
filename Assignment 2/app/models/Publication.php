@@ -7,56 +7,57 @@
                 parent::__construct();
             }
 
-            function get($publication_id) {
+            public function get($publication_id) {
                 $SQL = 'SELECT * FROM publication WHERE publication_id = :publication_id';
-                //always use PDO and prepared statements to avoid sql injections
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['publication_id'=>$publication_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Publication");
-                return $STMT->fetch(); //fetch is what we use to return one record that match the statement
+                return $STMT->fetch(); 
             }
 
-            function getAllPublic() { //fetches all public publications
-                $SQL = 'SELECT * FROM publication WHERE publication_status = 0'; //because 0 is public
-                //always use PDO and prepared statements to avoid sql injections
+            public function getAllPublic() { 
+                $SQL = 'SELECT * FROM publication WHERE publication_status = 0 ORDER BY timestamp ASC'; //because 0 is public
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute();
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Publication");
-               // var_dump($STMT->fetchAll());
-                return $STMT->fetchAll(); //fetchAll is what we use to return all of the records that match the statement
+                return $STMT->fetchAll(); 
             }
 
-            function getAll($profile_id) { //all public and private publications (only if made by the same user)
-                $SQL = 'SELECT * FROM `publication` WHERE publication_status = 0
+            public function getAll($profile_id) { //all public and private publications (only if made by the same user)
+                $SQL = 'SELECT * FROM publication WHERE publication_status = 0
                         UNION 
-                        SELECT * FROM `publication` WHERE publication_status = 1 AND profile_id = :profile_id;';
+                        SELECT * FROM publication WHERE publication_status = 1 AND profile_id = :profile_id ORDER BY timestamp DESC;';
 
-                //always use PDO and prepared statements to avoid sql injections
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['profile_id'=>$profile_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Publication");
-               // var_dump($STMT->fetchAll());
-                return $STMT->fetchAll(); //fetchAll is what we use to return all of the records that match the statement
+                return $STMT->fetchAll(); 
             }
 
             public function getProfile($profile_id) {
                 $SQL = 'SELECT * FROM profile WHERE profile_id = :profile_id';
-                //always use PDO and prepared statements to avoid sql injections
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['profile_id'=>$profile_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Profile");
-                return $STMT->fetch(); //fetch is what we use to return one record that match the statement
+                return $STMT->fetch(); 
             }
 
-            function getUser($user_id) {
+            public function getUser($user_id) {
                 $SQL = 'SELECT * FROM user WHERE user_id = :user_id';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['user_id'=>$user_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
-                return $STMT->fetch(); //fetch is what we use to return one record that match the statement
+                return $STMT->fetch(); 
             }
 
-            Function insert() { //fix this and subsequent calls
+            public function getTimestamp($publication_id) {
+                $SQL = 'SELECT timestamp FROM publication WHERE publication_id = :publication_id';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['publication_id'=>$publication_id]);
+                return $STMT->fetch()['timestamp'];
+            }
+
+            public function insert() { //fix this and subsequent calls
                 $SQL = 'INSERT INTO publication(profile_id, publication_title, publication_text, publication_status) 
                 VALUES(:profile_id, :publication_title, :publication_text, :publication_status)';
                 $STMT = self::$_connection->prepare($SQL);
@@ -64,7 +65,7 @@
                 'publication_text'=>$this->publication_text, 'publication_status'=>$this->publication_status]);
             }
     
-            function update() {
+            public function update() {
                 $SQL = 'UPDATE publication SET publication_title = :publication_title, publication_text = :publication_text, 
                 publication_status = :publication_status WHERE profile_id = :profile_id';
                 $STMT = self::$_connection->prepare($SQL);
@@ -72,7 +73,7 @@
                 'publication_status'=>$this->publication_status, 'profile_id'=>$this->profile_id]);
             }
     
-            function delete($publication_id) {
+            public function delete($publication_id) {
                 $SQL = 'DELETE FROM publication WHERE publication_id = :publication_id';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['publication_id'=>$publication_id]);

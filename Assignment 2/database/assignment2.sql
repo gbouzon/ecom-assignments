@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2022 at 03:49 AM
+-- Generation Time: Feb 27, 2022 at 06:46 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -40,7 +40,9 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`profile_id`, `user_id`, `first_name`, `middle_name`, `last_name`) VALUES
-(1, 1, 'Tarzan', NULL, 'Nulls');
+(4, 2, 'Username', 'Middle', 'Last'),
+(5, 1, 'Tarzan', 'm', 'Tarzan'),
+(6, 3, 'test1', 'test change', 'bitch');
 
 -- --------------------------------------------------------
 
@@ -62,9 +64,13 @@ CREATE TABLE `publication` (
 --
 
 INSERT INTO `publication` (`publication_id`, `profile_id`, `publication_title`, `publication_text`, `timestamp`, `publication_status`) VALUES
-(2, 1, 'The Title', 'adding some text\r\nmore random text\r\ntest\r\nfndsklglkdsrfjhilwrgijwaraklnhnkl', '2022-02-21 21:36:05', 0),
-(3, 1, 'Another publication (0)', 'some text\r\nsdjgkdsjgoidfjgdjgdfjlkgjdlfgjldgjldfjg', '2022-02-21 21:36:05', 0),
-(4, 1, 'Private Publication', 'sdfngjfdsngkjdfngkejkrgherghjwqedrftghyjmnbvgfcdesfrghbvn vgredstfghnbgtfrdfghnbhgtfrdghn mbvhcgthntrghnm htgrhntrhntr', '2022-02-21 21:36:54', 1);
+(9, 5, 'new public test', 'hello', '2022-02-27 04:24:56', 0),
+(10, 5, 'new public test 2', 'okay another test', '2022-02-27 04:25:07', 0),
+(11, 5, 'new private test', 'you suck ', '2022-02-27 04:30:05', 1),
+(12, 5, 'another private test ', 'gfhfghfghf', '2022-02-27 04:30:17', 1),
+(13, 4, 'a prvivate test', 'fdfsdf', '2022-02-27 04:31:11', 1),
+(14, 4, 'a public test', 'fdfsfds', '2022-02-27 04:31:19', 0),
+(17, 6, 'hello', 'dfsdfsfs', '2022-02-27 05:24:02', 0);
 
 -- --------------------------------------------------------
 
@@ -79,13 +85,6 @@ CREATE TABLE `publication_comment` (
   `comment` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `publication_comment`
---
-
-INSERT INTO `publication_comment` (`publication_comment_id`, `profile_id`, `publication _id`, `comment`, `timestamp`) VALUES
-(1, 1, 2, 'your publication is total shit', '2022-02-21 21:43:31');
 
 -- --------------------------------------------------------
 
@@ -104,7 +103,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password_hash`) VALUES
-(1, 'tarzan', '$2y$10$ZojIgKDcRX6wfj2uDcGPlO2NljkofYD7qqRswyEmXI8Jj6gv6mZdO');
+(1, 'tarzan', '$2y$10$ZojIgKDcRX6wfj2uDcGPlO2NljkofYD7qqRswyEmXI8Jj6gv6mZdO'),
+(2, 'username', '$2y$10$g/MYyufTNVhYYjFsNmy6/uow0o8pvIH/3N1pyv8F1poIGlYaspjDi'),
+(3, 'test1', '$2y$10$uELUoEjc2KmJkyl3tWCdY./4nUAmG0scTHR3x6zWWl2HoEA5rVFDG');
 
 --
 -- Indexes for dumped tables
@@ -148,13 +149,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `publication_comment`
@@ -166,7 +167,7 @@ ALTER TABLE `publication_comment`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

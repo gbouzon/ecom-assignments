@@ -5,8 +5,7 @@
 
             public function index() { //displays publications sorted by date
                 $myPublication = new \app\models\Publication();
-                $profile = (isset($_SESSION['user_id'])) ? $myPublication->getProfile($_SESSION['user_id']) : false;
-                $profile_id = ($profile) ? $profile->profile_id : false;
+                $profile_id = (isset($_SESSION['profile_id'])) ? $_SESSION['profile_id'] : false;
 
                 $publications = ($profile_id) ? $myPublication->getAll($profile_id) : $myPublication->getAllPublic();
                 $this->view('Main/index', $publications);

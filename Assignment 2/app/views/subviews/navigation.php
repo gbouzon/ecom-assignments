@@ -14,9 +14,13 @@
 			$myUser = new \app\models\User();
 			$myUser = $myUser->getById($_SESSION['user_id']);
 			$profile = $myUser->getUserProfile($myUser->user_id);
-			echo "<li><a href='/Profile/index/$profile->profile_id'>My Profile</a></li>";
+			echo "<li>My Profile:
+					<a href='/Profile/index/$profile->profile_id'>view</a> | 
+					<a href='/Profile/update/$profile->profile_id'>update</a>
+				 </li>";
 			echo "<li><a href='/Publication/create/$profile->profile_id'>Create Publication</a></li>";
 			echo "<li><a href='/User/logout'>Log out</a></li>";
 		}
+		$this->view('Main/search');
 	?>
 </ul>
