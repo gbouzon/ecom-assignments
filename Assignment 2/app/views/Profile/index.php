@@ -15,8 +15,8 @@
             ?>
             <br>
             <?php
-                //$this->view('Publication/index');
-                //$this->view('Comment/index');
+                $this->view('subviews/publications');
+                $this->view('Comment/index');
             ?>
         </div>
     </body>

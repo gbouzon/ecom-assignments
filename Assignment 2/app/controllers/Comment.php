@@ -5,10 +5,20 @@
         #[\app\filters\Profile]
         class Comment extends \app\core\Controller {
 
-            //shows comment view -> username, comment, options to modify/delete and button to create a new comment
-            //format: publication_title by username at timestamp
-            public function index($publication_id) { 
-                $this->view('Comment/index');
+            public function index($profile_id, $publication_id) { 
+                if (!isset($_POST['action'])) { //display he view if I don't submit the form
+                    $this->view('Comment/create');
+                }
+                else {  //process the data when the form has been submitted, id, title, text
+                    $newComment = new \app\models\Publication();
+                    $newComment->profile_id = $profile_id;
+                    $newComment->publication_id = $publication_id;
+                    $newComment->comment = $_POST['comment'];
+                    date_default_timezone_set('Canada/Quebec');
+                    $newComment->timestamp = time();
+                    $newComment->insert($profile_id);
+                    header('location:/Main/index');
+                }
             }
 
             public function create($profile_id, $publication_id) {
