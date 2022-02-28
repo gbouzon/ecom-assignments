@@ -10,6 +10,7 @@
         <div class='container'>
 
             <?php
+                echo "<a href='/User/delete'>Delete entire account</a><br>";
                 $this->view("Profile/details_subview", $data);
                 $this->view('subviews/navigation');
                 $publication = new \app\models\Publication();

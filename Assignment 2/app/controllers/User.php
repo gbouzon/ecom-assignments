@@ -53,6 +53,8 @@
             }
 
             function delete() {
-                
+                $newUser = new \app\models\User();
+                $newUser->delete();
+                logout();
             }
         }

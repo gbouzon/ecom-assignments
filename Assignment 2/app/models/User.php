@@ -41,4 +41,10 @@
 		        $STMT = self::$_connection->prepare($SQL);
 		        $STMT->execute(['username'=>$this->username,'password_hash'=>$this->password_hash]);
             }
+
+            function delete() {
+                $SQL = 'DELETE * FROM user WHERE user_id = :user_id';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['user_id'=>$_SESSION['user_id']]);
+            }
         }
