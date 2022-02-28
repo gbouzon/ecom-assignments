@@ -6,10 +6,9 @@
 
             function execute() {
                 if (!isset($_SESSION['user_id'])) { //user is not logged in
-                    header('location:/User/login'); //check if it's uppercase later
+                    header('location:/User/login');
                     return true; //I want to indicate to the framework that the user is filtered
                 }
-
                 return false;
             }
         }

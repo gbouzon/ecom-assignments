@@ -26,9 +26,9 @@
             
             <?php
                 echo "<a href='/Comment/create/$data->publication_id'>Leave a Comment</a> <br><br>";
-                $this->view('subviews/navigation');
                 $comments = $data->getComments($data->publication_id);
                 $this->view('Comment/index', $comments);
+                $this->view('subviews/navigation');
                 
             ?>
         </div>

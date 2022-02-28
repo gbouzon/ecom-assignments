@@ -10,7 +10,6 @@
         <div class='container'>
             <h1>Social Publication and Commenting App </h1>
             
-            
             <?php
                 $this->view('subviews/publications', $data);
                 $this->view('subviews/navigation');

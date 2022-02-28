@@ -16,8 +16,10 @@
 			<label class='form-label'>Password confirmation:<input type='password' name='password_confirm' class='form-control' /></label><br>
 			<input type="submit" name='action' value='Register!' class='form-control' />
 		</form>
-		Already have an account? <a href="/User/login">Login here.</a>
+		Already have an account? <a href="/User/login">Login here.</a> <br>
 			<?php
+				if ($data)
+					echo $data;
 				$this->view('subviews/navigation');
 			?>
 		</div>

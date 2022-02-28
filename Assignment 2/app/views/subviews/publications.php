@@ -2,7 +2,6 @@
     <ol>
         <?php
             foreach($data as $publication) {
-                //getting username, refactor later
                 $profile = $publication->getProfile($publication->profile_id);
                 $user = $publication->getUser($profile->user_id);
                 $username = $user->username;

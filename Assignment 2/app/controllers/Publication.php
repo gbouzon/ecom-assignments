@@ -4,7 +4,6 @@
         class Publication extends \app\core\Controller { //DO CHECKS -> USER VALIDATION
 
             //shows publications page -> publication title and user associated to it and timestamp
-            //comments subview and modify/delete button
             //format: publication_title by username at timestamp
             public function index($publication_id) { 
                 $myPublication = new \app\models\Publication();
@@ -45,9 +44,9 @@
             }
 
             #[\app\filters\Profile] 
-            public function delete($publication_id) { //check profile id: validation purposes
+            public function delete($publication_id) { //check profile id: validation purposes ->done in nav
                 $publication = new \app\models\Publication();
-		        $publication->delete($publication_id); //only if belongs to specific person (must be logged in)
+		        $publication->delete($publication_id); //only if belongs to specific person (must be logged in) ->done in nav
 		        header('location:/Main/index');
             }
         }

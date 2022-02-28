@@ -9,7 +9,6 @@
                     header('location:/Profile/create');
                     return true;
                 }
-
                 return false;
             }
         }
