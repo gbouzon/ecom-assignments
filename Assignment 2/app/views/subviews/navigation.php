@@ -1,7 +1,9 @@
 <ul>
 	<?php
 		$this->view('Main/search');
-		$this->view('subviews/search');
+		$searcher = new \app\controllers\Search();
+		$searcher->searchByTitle();
+		$searcher->searchByContent();
 	?>
 	<li><a href='/Main/index'>Home Page</a></li>
 
