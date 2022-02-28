@@ -54,6 +54,23 @@
 
             function delete() {
                 $newUser = new \app\models\User();
+                $newUser = $newUser->getById($_SESSION['user_id']);
+                $profile = $newUser->getUserProfile($newUser->user_id);
+                $publication = new \app\models\Publication();
+                $publications = $publication->getAllFromProfile($profile->profile_id);
+                $comment = new \app\models\Comment();
+                foreach($publications as $pub) {
+                    $comments = $comment->getAllFromPublication($pub->publication_id);
+                    foreach($comments as $com) {
+                        $com->delete($com->publication_comment_id);
+                    }
+                    $pub->delete($pub->publication_id);
+                }
+                $comments = $comment->getAllFromProfile($profile->profile_id);
+                foreach($comments as $comm) {
+                    $comm->delete($comm->publication_comment_id);
+                }
+                $profile->delete($profile->profile_id);
                 $newUser->delete();
                 $this->logout();
             }

@@ -46,6 +46,11 @@
             #[\app\filters\Profile] 
             public function delete($publication_id) { //check profile id: validation purposes ->done in nav
                 $publication = new \app\models\Publication();
+                $comment = new \app\models\Comment();
+                $comments = $comment->getAllFromPublication($publication_id);
+                foreach ($comments as $com) {
+                    $com->delete($com->publication_comment_id);
+                }
 		        $publication->delete($publication_id); //only if belongs to specific person (must be logged in) ->done in nav
 		        header('location:/Main/index');
             }
