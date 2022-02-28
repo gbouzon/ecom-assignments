@@ -11,13 +11,14 @@
 
                 <?php
                     //getting username, refactor later
+                    $parsedown = new app\models\Parsedown(); //displaying markdown
                     $profile = $data->getProfile($data->profile_id);
                     $user = $data->getUser($profile->user_id);
                     $username = $user->username;
                     $timestamp = $data->getTimestamp($data->publication_id);
 
                     echo "<h1>$data->publication_title by $username at $timestamp</h1>"; //title
-                    echo "<p>$data->publication_text</p>"; //text
+                    echo $parsedown->line($data->publication_text) . "<br><br>"; //text
                     if (isset($_SESSION['user_id']) && $user->user_id == $_SESSION['user_id'])
                         echo "<a href='/Publication/update/$data->publication_id'>Modify this publication</a> | 
 					    <a href='/Publication/delete/$data->publication_id'>Delete this publication</a> <br> <br>";

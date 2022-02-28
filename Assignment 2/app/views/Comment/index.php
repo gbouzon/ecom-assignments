@@ -12,12 +12,13 @@
         <?php
             foreach($data as $comment) {
                 //getting username, refactor later
+                $parsedown = new app\models\Parsedown(); //displaying markdown
                 $profile = $comment->getProfile($comment->profile_id);
                 $user = $comment->getUser($profile->user_id);
                 $username = $user->username;
                 $timestamp = $comment->getTimestamp($comment->publication_comment_id);
-                echo "<h4>$username at $timestamp:</h4>
-                <p>$comment->comment</p>";
+                echo "<h4>$username at $timestamp:</h4>"; 
+                echo $parsedown->line($comment->comment) . "<br>";
                 if (isset($_SESSION['user_id']) && $user->user_id == $_SESSION['user_id'])
                         echo "<a href='/Comment/update/$comment->publication_comment_id'>Modify</a> | 
                         <a href='/Comment/delete/$comment->publication_comment_id'>Delete</a> <br><br>";
