@@ -65,6 +65,14 @@
                 return $STMT->fetch()['timestamp'];
             }
 
+            function getComments($publication_id) {
+                $SQL = 'SELECT * FROM publication_comment WHERE publication_id = :publication_id ORDER BY timestamp DESC;';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['publication_id'=>$publication_id]);
+                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Comment");
+                return $STMT->fetchAll();
+            }
+
             public function insert() { //fix this and subsequent calls
                 $SQL = 'INSERT INTO publication(profile_id, publication_title, publication_text, publication_status) 
                 VALUES(:profile_id, :publication_title, :publication_text, :publication_status)';

@@ -1,10 +1,4 @@
 <ul>
-	<?php
-		$this->view('Main/search');
-		$searcher = new \app\controllers\Search();
-		$searcher->searchByTitle();
-		$searcher->searchByContent();
-	?>
 	<li><a href='/Main/index'>Home Page</a></li>
 
 	<?php
@@ -27,5 +21,14 @@
 			echo "<li><a href='/Publication/create/$profile->profile_id'>Create Publication</a></li>";
 			echo "<li><a href='/User/logout'>Log out</a></li>";
 		}	
+	?>
+	<?php
+		$this->view('Search/index');
+		$searcher = new \app\controllers\Search();
+		$type = filter_input(INPUT_POST, 'search_type');
+		if ($type === "title")
+			$searcher->searchByTitle();
+		else if ($type === "content")
+			$searcher->searchByContent();
 	?>
 </ul>

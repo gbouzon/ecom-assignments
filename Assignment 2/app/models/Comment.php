@@ -8,7 +8,7 @@
             }
 
             function get($publication_comment_id) {
-                $SQL = 'SELECT * FROM publication_comment WHERE publication_comment_id = :publication_comment_id';
+                $SQL = 'SELECT * FROM publication_comment WHERE publication_comment_id = :publication_comment_id;';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['publication_comment_id'=>$publication_comment_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Comment");
@@ -16,7 +16,7 @@
             }
 
             function getAll() { 
-                $SQL = 'SELECT * FROM publication_comment';
+                $SQL = 'SELECT * FROM publication_comment SORT BY timestamp DESC;';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute();
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Comment");
@@ -24,7 +24,7 @@
             }
 
             function getAllFromProfile($profile_id) {
-                $SQL = 'SELECT * FROM publication_comment WHERE profile_id = :profile_id;';
+                $SQL = 'SELECT * FROM publication_comment WHERE profile_id = :profile_id SORT BY timestamp DESC;';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['profile_id'=>$profile_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Comment");
@@ -32,7 +32,7 @@
             }
 
             function getAllFromPublication($publication_id) {
-                $SQL = 'SELECT * FROM publication_comment WHERE publication_id = :publication_id;';
+                $SQL = 'SELECT * FROM publication_comment WHERE publication_id = :publication_id SORT BY timestamp DESC;';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['publication_id'=>$publication_id]);
                 $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Comment");

@@ -16,8 +16,7 @@
                 $user = $comment->getUser($profile->user_id);
                 $username = $user->username;
                 $timestamp = $comment->getTimestamp($comment->publication_comment_id);
-                echo "<h4>$username at $timestamp</h4>
-                <a href = '/Publication/index/$comment->publication_id'>Original Publication</a>
+                echo "<h4>$username at $timestamp:</h4>
                 <p>$comment->comment</p>";
                 if (isset($_SESSION['user_id']) && $user->user_id == $_SESSION['user_id'])
                         echo "<a href='/Comment/update/$comment->publication_comment_id'>Modify</a> | 

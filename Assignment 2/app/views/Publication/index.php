@@ -24,12 +24,9 @@
                 ?>
             
             <?php
+                echo "<a href='/Comment/create/$data->publication_id'>Leave a Comment</a> <br><br>";
                 $this->view('subviews/navigation');
-                $comment = new \app\models\Comment();
-                $comment->profile_id = $_SESSION['profile_id'];
-                $comment->publication_id = $data->publication_id;
-                $this->view('Comment/create', $comment);
-                $comments = $comment->getAllFromPublication($data->publication_id);
+                $comments = $data->getComments($data->publication_id);
                 $this->view('Comment/index', $comments);
                 
             ?>

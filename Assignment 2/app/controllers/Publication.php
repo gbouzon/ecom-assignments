@@ -24,7 +24,6 @@
                     $newPublication->publication_status = $_POST['publication_status'];
                     $newPublication->profile_id = $profile_id;
                     $newPublication->insert($profile_id);
-                    var_dump($newPublication->publication_id); 
                     header('location:/Main/index');
                 }
             }

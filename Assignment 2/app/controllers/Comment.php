@@ -10,14 +10,17 @@
                 $this->view('Comment/index', $comments);
             }
 
-            public function create($comment) {
+            public function create($publication_id) {
                 if (!isset($_POST['action'])) { 
                     $this->view('Comment/create');
                 }
                 else {  
+                    $comment = new \app\models\Comment();
+                    $comment->profile_id = $_SESSION['profile_id'];
+                    $comment->publication_id = $publication_id;
                     $comment->comment = $_POST['comment'];
                     $comment->insert();
-                    header("location:/Publication/index/$comment->publication_id");
+                    header("location:/Publication/index/$publication_id");
                 }
             }
 

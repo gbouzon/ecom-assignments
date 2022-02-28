@@ -8,7 +8,6 @@
                 $username = $user->username;
                 $timestamp = $publication->getTimestamp($publication->publication_id);
 
-                //TODO: get timestamp and order list by timestamp
                 echo "<li><a href = '/Publication/index/$publication->publication_id'>$publication->publication_title by $username at $timestamp</a></li>";
             }
         ?>
