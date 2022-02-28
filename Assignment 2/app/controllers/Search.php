@@ -16,7 +16,7 @@
                 $matchingPubs = array();
                 if (isset($_POST['action'])) {
                     for ($i = 0; $i < count($this->publicationsArray); $i++) {
-                        if (str_contains($this->publicationsArray[$i]->publication_title, $_POST['search']))
+                        if (str_contains(strtolower($this->publicationsArray[$i]->publication_title), strtolower($_POST['search'])))
                             array_push($matchingPubs, $this->publicationsArray[$i]);
                     }
                     $this->view('subviews/search', $matchingPubs);
@@ -28,7 +28,7 @@
                 $matchingPubs = array();
                 if (isset($_POST['action'])) {
                     for ($i = 0; $i < count($this->publicationsArray); $i++) {
-                        if (str_contains($this->publicationsArray[$i]->publication_text, $_POST['search']))
+                        if (str_contains(strtolower($this->publicationsArray[$i]->publication_text), strtolower($_POST['search'])))
                             array_push($matchingPubs, $this->publicationsArray[$i]);
                     }
                     $this->view('subviews/search', $matchingPubs);
