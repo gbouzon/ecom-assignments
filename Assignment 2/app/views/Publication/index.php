@@ -25,8 +25,10 @@
             
             <?php
                 $this->view('subviews/navigation');
-                $this->view('Comment/create', $_SESSION['profile_id'], $data->publication_id);
                 $comment = new \app\models\Comment();
+                $comment->profile_id = $_SESSION['profile_id'];
+                $comment->publication_id = $data->publication_id;
+                $this->view('Comment/create', $comment);
                 $comments = $comment->getAllFromPublication($data->publication_id);
                 $this->view('Comment/index', $comments);
                 

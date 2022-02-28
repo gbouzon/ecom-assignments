@@ -5,7 +5,7 @@
 	<body>
 		<form method="post" action = "">
 			<input type="text" name="search">
-			<button type="submit">Search</button>
+			<button type="submit" name="action">Search</button>
 		</form>
 	</body>
 </html>

@@ -62,18 +62,18 @@
                 return $STMT->fetch()['timestamp'];
             }
 
-            Function insert() { 
-                $SQL = 'INSERT INTO publication_comment(profile_id, publication_id, comment, timestamp) 
-                VALUES(:profile_id, :publication_id, :comment, :timestamp)';
+            function insert() {
+                $SQL = 'INSERT INTO publication_comment(profile_id, publication_id, comment) 
+                VALUES(:profile_id, :publication_id, :comment)';
                 $STMT = self::$_connection->prepare($SQL);
                 $STMT->execute(['profile_id'=>$this->profile_id, 'publication_id'=>$this->publication_id, 
-                'comment'=>$this->comment, 'timestamp'=>$this->timestamp]);
+                'comment'=>$this->comment]);
             }
     
-            function update() {
-                $SQL = 'UPDATE publication_comment SET comment = :comment, timestamp = :timestamp, profile_id = :profile_id';
+            function update($publication_comment_id) {
+                $SQL = 'UPDATE publication_comment SET comment = :comment WHERE publication_comment_id = :publication_comment_id';
                 $STMT = self::$_connection->prepare($SQL);
-                $STMT->execute(['comment'=>$this->comment, 'timestamp'=>$this->timestamp,'profile_id'=>$this->profile_id]);
+                $STMT->execute(['comment'=>$this->comment, 'publication_comment_id'=>$publication_comment_id]);
             }
     
             function delete($publication_comment_id) {

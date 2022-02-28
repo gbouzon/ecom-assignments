@@ -1,4 +1,8 @@
 <ul>
+	<?php
+		$this->view('Main/search');
+		$this->view('subviews/search');
+	?>
 	<li><a href='/Main/index'>Home Page</a></li>
 
 	<?php
@@ -20,7 +24,6 @@
 				 </li>";
 			echo "<li><a href='/Publication/create/$profile->profile_id'>Create Publication</a></li>";
 			echo "<li><a href='/User/logout'>Log out</a></li>";
-		}
-		$this->view('Main/search');
+		}	
 	?>
 </ul>

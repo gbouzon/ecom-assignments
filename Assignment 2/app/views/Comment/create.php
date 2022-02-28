@@ -14,7 +14,6 @@
                 <label class='form-label'>Comment:<textarea name='comment' cols="80" class='form-control'></textarea></label><br>
                 <input type="submit" name='action' value='Submit Comment' class='form-control' />
             </form>
-
         </div>
     </body>
 </html>

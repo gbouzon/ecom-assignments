@@ -10,35 +10,34 @@
                 $this->view('Comment/index', $comments);
             }
 
-            public function create($profile_id, $publication_id) {
-                if (!isset($_POST['action'])) { //display he view if I don't submit the form
+            public function create($comment) {
+                if (!isset($_POST['action'])) { 
                     $this->view('Comment/create');
                 }
-                else {  //process the data when the form has been submitted, id, title, text
-                    $newComment = new \app\models\Comment();
-                    $newComment->profile_id = $profile_id;
-                    $newComment->publication_id = $publication_id;
-                    $newComment->comment = $_POST['comment'];
-                    $newComment->insert();
+                else {  
+                    $comment->comment = $_POST['comment'];
+                    $comment->insert();
+                    header("location:/Publication/index/$comment->publication_id");
                 }
             }
 
             public function update($publication_comment_id) {
                 $comment = new \app\models\Comment();
-                $comment = $comment->get($publication_comment_id); //get the specific publication
+                $comment = $comment->get($publication_comment_id);
                 if (!isset($_POST['action'])) {
                     $this->view('Comment/update', $comment);
                 }
                 else {
                     $comment->comment = $_POST['comment'];
-                    $comment->update();
-                    header("location:/Publication/index/$publication->publication_id");
+                    $comment->update($publication_comment_id);
+                    header("location:/Publication/index/$comment->publication_id");
                 }
             }
 
             public function delete($publication_comment_id) {
                 $comment = new \app\models\Comment();
+                $comment = $comment->get($publication_comment_id);
                 $comment->delete($publication_comment_id); //only if belongs to specific person (must be logged in)
-                header('location:/Main/index');
+                header("location:/Publication/index/$comment->publication_id");
             }
         }
