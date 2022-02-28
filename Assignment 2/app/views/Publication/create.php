@@ -12,7 +12,7 @@
             <h1>Create your Publication</h1>
             <form method='post' action=''>
                 <label class='form-label'>Publication title:<input type='text' name='publication_title' class='form-control' /></label><br>
-                <label class='form-label'>Publication text:<textarea name='publication_text' class='form-control'></textarea></label><br>
+                <label class='form-label'>Publication text:<textarea name='publication_text' cols="80" class='form-control'></textarea></label><br>
                 <input type="radio" id="public" name="publication_status" value="0">
                 <label for="public">Public</label><br>
                 <input type="radio" id="private" name="publication_status" value="1">

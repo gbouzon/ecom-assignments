@@ -39,6 +39,28 @@
                 return $STMT->fetchAll();
             }
 
+            public function getProfile($profile_id) {
+                $SQL = 'SELECT * FROM profile WHERE profile_id = :profile_id';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['profile_id'=>$profile_id]);
+                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Profile");
+                return $STMT->fetch(); 
+            }
+
+            public function getUser($user_id) {
+                $SQL = 'SELECT * FROM user WHERE user_id = :user_id';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['user_id'=>$user_id]);
+                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
+                return $STMT->fetch(); 
+            }
+
+            public function getTimestamp($publication_comment_id) {
+                $SQL = 'SELECT timestamp FROM publication_comment WHERE publication_comment_id = :publication_comment_id';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['publication_comment_id'=>$publication_comment_id]);
+                return $STMT->fetch()['timestamp'];
+            }
 
             Function insert() { 
                 $SQL = 'INSERT INTO publication_comment(profile_id, publication_id, comment, timestamp) 

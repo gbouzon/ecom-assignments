@@ -12,11 +12,12 @@
             <?php
                 $this->view("Profile/details_subview", $data);
                 $this->view('subviews/navigation');
-            ?>
-            <br>
-            <?php
-                $this->view('subviews/publications');
-                $this->view('Comment/index');
+                $publication = new \app\models\Publication();
+                $userPubs = $publication->getAllFromProfile($data->profile_id);
+                $this->view('subviews/publications', $userPubs);
+                $comment = new \app\models\Comment();
+                $userComs = $comment->getAllFromProfile($data->profile_id);
+                $this->view('Comment/index', $userComs);
             ?>
         </div>
     </body>

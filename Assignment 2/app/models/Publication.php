@@ -34,6 +34,14 @@
                 return $STMT->fetchAll(); 
             }
 
+            public function getAllFromProfile($profile_id) { //all public and private publications (only if made by the same user)
+                $SQL = 'SELECT * FROM publication WHERE profile_id = :profile_id ORDER BY timestamp DESC;';
+                $STMT = self::$_connection->prepare($SQL);
+                $STMT->execute(['profile_id'=>$profile_id]);
+                $STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Publication");
+                return $STMT->fetchAll(); 
+            }
+
             public function getProfile($profile_id) {
                 $SQL = 'SELECT * FROM profile WHERE profile_id = :profile_id';
                 $STMT = self::$_connection->prepare($SQL);
