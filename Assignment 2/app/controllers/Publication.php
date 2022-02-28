@@ -38,6 +38,7 @@
                 else {
                     $publication->publication_title = $_POST['publication_title'];
                     $publication->publication_text = $_POST['publication_text'];
+                    $publication->publication_status = $_POST['publication_status'];
                     $publication->update();
                     header("location:/Publication/index/$publication->publication_id");
                 }
