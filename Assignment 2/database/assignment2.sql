@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2022 at 06:46 AM
+-- Generation Time: Feb 28, 2022 at 09:59 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -81,10 +81,17 @@ INSERT INTO `publication` (`publication_id`, `profile_id`, `publication_title`, 
 CREATE TABLE `publication_comment` (
   `publication_comment_id` int(11) NOT NULL,
   `profile_id` int(11) NOT NULL,
-  `publication _id` int(11) NOT NULL,
+  `publication_id` int(11) NOT NULL,
   `comment` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `publication_comment`
+--
+
+INSERT INTO `publication_comment` (`publication_comment_id`, `profile_id`, `publication_id`, `comment`, `timestamp`) VALUES
+(3, 5, 17, 'test change', '2022-02-28 08:52:28');
 
 -- --------------------------------------------------------
 
@@ -132,7 +139,7 @@ ALTER TABLE `publication`
 ALTER TABLE `publication_comment`
   ADD PRIMARY KEY (`publication_comment_id`),
   ADD KEY `comment_to_profile` (`profile_id`),
-  ADD KEY `comment_to_publication` (`publication _id`);
+  ADD KEY `comment_to_publication` (`publication_id`);
 
 --
 -- Indexes for table `user`
@@ -161,7 +168,7 @@ ALTER TABLE `publication`
 -- AUTO_INCREMENT for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -190,7 +197,7 @@ ALTER TABLE `publication`
 --
 ALTER TABLE `publication_comment`
   ADD CONSTRAINT `comment_to_profile` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`),
-  ADD CONSTRAINT `comment_to_publication` FOREIGN KEY (`publication _id`) REFERENCES `publication` (`publication_id`);
+  ADD CONSTRAINT `comment_to_publication` FOREIGN KEY (`publication_id`) REFERENCES `publication` (`publication_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
